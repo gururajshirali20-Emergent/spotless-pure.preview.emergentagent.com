@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Check, Plus, X } from "lucide-react";
 import { useLenis } from "lenis/react";
 import blossom from "@/assets/forest-blossom.png";
@@ -77,6 +77,8 @@ export default function Products({ products = [] }) {
         >
           {active && (
             <div className="grid md:grid-cols-2">
+              <DialogTitle className="sr-only">{active.name}</DialogTitle>
+              <DialogDescription className="sr-only">{active.description}</DialogDescription>
               <div
                 className="relative flex items-end justify-center p-8 min-h-[320px]"
                 style={{ background: `radial-gradient(circle at 50% 30%, ${active.accent}22, transparent 65%)` }}

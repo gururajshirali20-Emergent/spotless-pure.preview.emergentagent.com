@@ -168,7 +168,7 @@ async def get_products():
     return {"products": PRODUCTS, "features": FEATURES}
 
 
-@api_router.post("/enquiries", response_model=Enquiry)
+@api_router.post("/enquiries", response_model=Enquiry, response_model_by_alias=False)
 async def create_enquiry(payload: EnquiryCreate):
     doc = payload.model_dump()
     doc["status"] = "new"
@@ -199,7 +199,7 @@ async def me(current_user: dict = Depends(get_current_user)):
 
 
 # ---- Admin enquiries ----
-@api_router.get("/enquiries", response_model=List[Enquiry])
+@api_router.get("/enquiries", response_model=List[Enquiry], response_model_by_alias=False)
 async def list_enquiries(current_user: dict = Depends(get_current_user)):
     docs = await db.enquiries.find().sort("created_at", -1).to_list(1000)
     return [Enquiry(**d) for d in docs]
@@ -213,7 +213,7 @@ async def enquiry_stats(current_user: dict = Depends(get_current_user)):
     return {"total": total, "new": new, "bulk": bulk}
 
 
-@api_router.patch("/enquiries/{enquiry_id}", response_model=Enquiry)
+@api_router.patch("/enquiries/{enquiry_id}", response_model=Enquiry, response_model_by_alias=False)
 async def update_enquiry(enquiry_id: str, current_user: dict = Depends(get_current_user)):
     if not ObjectId.is_valid(enquiry_id):
         raise HTTPException(status_code=400, detail="Invalid id")
