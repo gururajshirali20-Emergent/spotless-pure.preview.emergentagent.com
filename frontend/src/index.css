@@ -2,74 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-    font-family:
-        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
 @layer base {
     :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
+        --background: 40 33% 98%;
+        --foreground: 222 60% 10%;
         --card: 0 0% 100%;
-        --card-foreground: 0 0% 3.9%;
+        --card-foreground: 222 60% 10%;
         --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 3.9%;
-        --primary: 0 0% 9%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 96.1%;
-        --muted-foreground: 0 0% 45.1%;
-        --accent: 0 0% 96.1%;
-        --accent-foreground: 0 0% 9%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 89.8%;
-        --input: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
+        --popover-foreground: 222 60% 10%;
+        --primary: 222 62% 10%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 122 47% 19%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 40 20% 94%;
+        --muted-foreground: 222 15% 40%;
+        --accent: 45 65% 52%;
+        --accent-foreground: 222 62% 10%;
+        --destructive: 0 72% 46%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 40 15% 88%;
+        --input: 40 15% 88%;
+        --ring: 45 65% 52%;
         --radius: 0.5rem;
-    }
-    .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
+        --chart-1: 122 47% 25%;
+        --chart-2: 45 65% 52%;
+        --chart-3: 222 62% 20%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 160 40% 40%;
     }
 }
 
@@ -79,37 +38,142 @@ code {
     }
     body {
         @apply bg-background text-foreground;
+        font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin: 0;
     }
 }
 
-@layer base {
-    [data-debug-wrapper="true"] {
-        display: contents !important;
-    }
+/* ---------- Brand design tokens ---------- */
+:root {
+    --navy: #0a1128;
+    --navy-soft: #101a3a;
+    --forest: #1e3f20;
+    --forest-deep: #14311a;
+    --gold: #d4af37;
+    --gold-light: #f3e5ab;
+    --marble: #faf9f6;
+}
 
-    [data-debug-wrapper="true"] > * {
-        margin-left: inherit;
-        margin-right: inherit;
-        margin-top: inherit;
-        margin-bottom: inherit;
-        padding-left: inherit;
-        padding-right: inherit;
-        padding-top: inherit;
-        padding-bottom: inherit;
-        column-gap: inherit;
-        row-gap: inherit;
-        gap: inherit;
-        border-left-width: inherit;
-        border-right-width: inherit;
-        border-top-width: inherit;
-        border-bottom-width: inherit;
-        border-left-style: inherit;
-        border-right-style: inherit;
-        border-top-style: inherit;
-        border-bottom-style: inherit;
-        border-left-color: inherit;
-        border-right-color: inherit;
-        border-top-color: inherit;
-        border-bottom-color: inherit;
-    }
+.font-serif {
+    font-family: "Cormorant Garamond", Georgia, serif;
+}
+.font-sans {
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Marble background */
+.marble-bg {
+    background-color: #faf9f6;
+    background-image:
+        radial-gradient(
+            circle at 20% 15%,
+            rgba(212, 175, 55, 0.05),
+            transparent 45%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(30, 63, 32, 0.04),
+            transparent 40%
+        ),
+        url("https://images.unsplash.com/photo-1558346648-9757f2fa4474?crop=entropy&cs=srgb&fm=jpg&q=70&w=1400");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.navy-bg {
+    background-color: var(--navy);
+}
+.forest-bg {
+    background-color: var(--forest);
+}
+
+/* Gold ornate divider */
+.gold-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.gold-divider::before,
+.gold-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--gold),
+        transparent
+    );
+}
+
+.text-gold {
+    color: var(--gold);
+}
+.bg-gold {
+    background-color: var(--gold);
+}
+.border-gold {
+    border-color: var(--gold);
+}
+
+/* Gold sweep button */
+.btn-sweep {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+.btn-sweep::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--gold);
+    transform: translateX(-101%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.btn-sweep:hover::after {
+    transform: translateX(0);
+}
+
+/* Masked reveal helper */
+.reveal-mask {
+    overflow: hidden;
+    display: block;
+}
+
+/* Selection */
+::selection {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--marble);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--forest);
+    border-radius: 8px;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.product-shadow {
+    filter: drop-shadow(0 30px 40px rgba(10, 17, 40, 0.25));
+}
+
+.text-shadow-soft {
+    text-shadow: 0 2px 30px rgba(255, 255, 255, 0.6);
 }

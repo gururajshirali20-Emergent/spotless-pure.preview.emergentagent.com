@@ -1,0 +1,46 @@
+{
+  "summary": "First iteration test of Elvora-X. Backend: 13 pytest tests run, 12 pass (1 flaky race from xdist parallel). Public products/enquiry endpoints, JWT login, /auth/me, protected list/stats/patch/delete all functional. Frontend: landing page loads, hero heading, 3 product cards, product detail modal open/close, contact form submits (POST /api/enquiries -> 200, success toast shown), admin unauth->/admin/login redirect, admin login works, dashboard shows enquiries-table + 3 stat cards, logout works. CRITICAL BUG: PATCH and DELETE from admin dashboard return 400 because backend response serializes with '_id' (due to Pydantic alias + FastAPI default by_alias=True), while frontend uses r.id (undefined) — resulting in URL /api/enquiries/undefined and 400 'Invalid id'. Also causes React duplicate-key warning.",
+  "backend_issues": {
+    "critical": [
+      {"endpoint": "POST /api/enquiries, GET /api/enquiries, PATCH /api/enquiries/{id}, DELETE /api/enquiries/{id}", "issue": "Response body serializes id as '_id' instead of 'id'. Enquiry model uses id: PyObjectId = Field(alias='_id'). FastAPI serializes response_model with by_alias=True by default, so client receives {\"_id\": \"...\"} not {\"id\": \"...\"}. Problem statement required 'id'. Frontend AdminDashboard uses r.id, causing PATCH/DELETE to hit /api/enquiries/undefined -> 400. Fix: set model_config = ConfigDict(populate_by_name=True) and either alias id with alias '_id' but return by_alias=False, OR use a custom serializer, OR simply return dict with 'id' key. Simplest fix: in each endpoint construct response dict with 'id' key (str(_id)) instead of returning Enquiry model, OR add `@field_serializer` / use jsonable_encoder(..., by_alias=False).", "priority": "CRITICAL"}
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "AdminDashboard rows", "issue": "React warning: 'Each child in a list should have a unique key prop' — because key={r.id} and r.id is undefined (backend returns _id). Root cause same as backend serialization bug.", "selector": "TableRow key={r.id}", "priority": "HIGH"},
+      {"component": "AdminDashboard mark-read/delete", "issue": "Buttons produce data-testid like `mark-read-undefined` and `delete-undefined` (r.id undefined). Clicking issues PATCH/DELETE /api/enquiries/undefined -> 400 'Invalid id'. UI shows 'Failed to delete'/no update. Same underlying cause.", "selector": "[data-testid^='mark-read-'], [data-testid^='delete-']", "priority": "CRITICAL"},
+      {"component": "ProductModal (Radix Dialog)", "issue": "Console warning: 'DialogContent requires a DialogTitle for the component to be accessible for screen reader users.' Add DialogTitle (visually hidden if needed) to product-modal.", "selector": "[data-testid='product-modal']", "priority": "LOW"}
+    ],
+    "integration_issues": [
+      {"flow": "Admin mark-read / delete enquiry", "issue": "PATCH & DELETE both return 400 due to id mismatch. Blocks admin CRUD from UI.", "affected_selectors": ["[data-testid^='mark-read-']", "[data-testid^='delete-']"]}
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix backend response serialization: return 'id' (string) instead of '_id' in Enquiry responses (POST /api/enquiries, GET /api/enquiries, PATCH, DELETE). Either build plain dicts with 'id': str(doc['_id']) or use jsonable_encoder(model, by_alias=False), or change Enquiry to have `id` field mapped without alias and populate it in code. This will fix admin mark-read/delete flow.",
+    "Add DialogTitle to product modal (accessibility) — can wrap in VisuallyHidden.",
+    "Once id contract is fixed, re-verify admin mark-read and delete flows end-to-end."
+  ],
+  "critical_code_review_comments": [
+    "server.py: Enquiry pydantic model relies on alias '_id'; FastAPI's response_model defaults to by_alias=True producing '_id' in JSON. This is a contract mismatch with frontend and with the stated requirement ('returns it with an id').",
+    "server.py: CORS uses allow_origins='*' with allow_credentials=True — not compatible when credentials are true; browsers will reject. Currently harmless since auth uses Authorization header not cookies, but should be tightened.",
+    "server.py: JWT_SECRET read from env is fine, but no expiry configuration exposed; 7 days hard-coded is acceptable.",
+    "server.py: startup uses @app.on_event which is deprecated in newer FastAPI (should use lifespan). Not blocking.",
+    "AdminDashboard.jsx: uses key={r.id} — after backend fix will resolve. Also duplicate testids across rows would silently fail; consider using r._id fallback until backend fix ships."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py"
+  ],
+  "success_rate": {"backend": "92%", "frontend": "70%"},
+  "test_credentials": "admin@elvora-x.com / Elvora@2025 (validated OK)",
+  "seed_data_creation": "Created and cleaned up TEST_-prefixed enquiries during pytest runs",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "After main agent fixes backend id serialization, retest admin PATCH/DELETE UI flow: login as admin, click mark-read and delete on an enquiry, verify PATCH/DELETE return 200 and UI updates without 'Failed to delete'. Also retest POST /api/enquiries response contains 'id' key. Use backend_test.py; the flexible id-or-_id assertions can be tightened to require 'id' after fix.",
+  "rca of the issue": "Enquiry Pydantic model declares `id: PyObjectId = Field(alias='_id')`. FastAPI's response_model serialization defaults to by_alias=True, so it outputs the alias name '_id'. Frontend AdminDashboard.jsx reads r.id which is undefined, so PATCH /api/enquiries/undefined and DELETE /api/enquiries/undefined are issued. Backend rejects with 400 because ObjectId.is_valid('undefined') is False. Reproduction: login as admin -> POST an enquiry via contact form -> open /admin -> click delete on that row -> toast 'Failed to delete'. Mitigation options: (a) return {'id': str(doc['_id']), ...} directly, (b) drop response_model and jsonable_encoder(model, by_alias=False), (c) change model so id is populated from _id but alias not used for output (populate_by_name=True and use `model_dump(by_alias=False)`)."
+}
