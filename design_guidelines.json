@@ -1,0 +1,136 @@
+{
+  "theme_and_identity": {
+    "brand_name": "Elvora-X",
+    "tagline": "Spotless and Pure",
+    "archetype": "LUXURY & ORGANIC HYBRID",
+    "vibe": "Premium, elegant, pristine, editorial, Awwwards-worthy.",
+    "theme": "Light theme primary (white marble focus) with deep navy and forest green contrast sections."
+  },
+  "typography": {
+    "strategy": "The 'Old Money Tech' Pairing. Elegant Serif for headings to convey luxury, clean Geometric/Humanist Sans for body to ensure legibility.",
+    "headings_font": "Cormorant Garamond",
+    "body_font": "Manrope",
+    "scale_rules": {
+      "H1": "text-5xl md:text-7xl lg:text-[6rem] tracking-tighter leading-none font-medium",
+      "H2": "text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight",
+      "H3": "text-2xl md:text-3xl lg:text-4xl tracking-tight",
+      "Body": "text-base md:text-lg leading-relaxed font-light",
+      "Overline": "text-xs md:text-sm uppercase tracking-[0.3em] font-semibold"
+    },
+    "instructions": "Never use Inter for headings. Keep serif headings highly contrasting in weight. Headings must use tight tracking, overlines must use extremely wide tracking."
+  },
+  "colors": {
+    "palette": {
+      "primary": "#0A1128",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#1E3F20",
+      "secondary_foreground": "#FFFFFF",
+      "accent_gold": "#D4AF37",
+      "accent_gold_light": "#F3E5AB",
+      "background": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "muted": "#F0F0F0",
+      "border": "#E5E5E5"
+    },
+    "rules": {
+      "gradients": "Do not use generic tech gradients. Only use subtle radial gradients to mimic spotlighting on products, or a gentle gold sheen.",
+      "contrast": "Ensure pure navy (#0A1128) is used against pure white or marble for maximum striking contrast. No muddy grays.",
+      "accents": "Gold (#D4AF37) should be used sparingly for thin borders, active states, and ornate botanical/divider elements."
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": "Use 'Optical Clarity' Glassmorphism (bg-white/70 backdrop-blur-2xl border border-white/40 shadow-sm) for sticky nav and product detail modals. Solid backgrounds for main sections.",
+    "borders": "Ornate but minimal. 1px solid gold (#D4AF37) borders for premium cards or divider lines. Clipped frame edges for photography (e.g., subtle rounded corners mixed with sharp corners).",
+    "shadows": "Soft, diffused ambient shadows (shadow-[0_20px_40px_rgba(10,17,40,0.08)]) for floating elements. Avoid harsh dropshadows.",
+    "textures": "White marble background pattern should subtly overlay the hero and footer sections. Green botanical leaves used as absolute positioned overlapping elements for depth."
+  },
+  "spacing_and_layout": {
+    "container": "Max-width 8xl, centered. But break out of container for full-bleed images and marquees.",
+    "spacing_scale": "Extremely generous. Use py-24 or py-32 for section padding. gap-8 to gap-16 in grids.",
+    "grid_system": "Bento Grid Protocol. Asymmetrical grids for features. Standard 3-column for products.",
+    "alignment": "Left-align dense text. Center-align hero statements if tightly grouped. Use optical alignment for icons."
+  },
+  "motion_and_interaction": {
+    "smooth_scroll": "MANDATORY: Implement `lenis` for smooth momentum scrolling across the marketing pages.",
+    "hero_reveal": "MANDATORY: Kinetic Hero with masked line-by-line reveal using framer-motion (overflow-hidden wrapper, text translates Y from 100% to 0%).",
+    "scroll_animations": "Framer Motion `whileInView` for section scroll reveals. Fade up + slight Y translation (e.g., y: 40 -> 0). Stagger children in grids.",
+    "parallax": "Subtle parallax on botanical leaf accents and marble background using framer-motion `useScroll` and `useTransform`.",
+    "micro_interactions": "Image scales up 1.05x on card hover. Gold border reveals or expands on hover. Buttons have a liquid or sweep fill effect.",
+    "marquee": "One slow editorial marquee (react-fast-marquee). High contrast, serif font, uppercase, separated by gold dot or leaf icon. Very slow speed."
+  },
+  "components": {
+    "marketing_hybrid_rule": "Marketing layouts MUST use pure HTML/Tailwind and framer-motion. Do NOT use Shadcn Card or Section. Build custom, asymmetrical, overlapping structures.",
+    "admin_dashboard": "Use strict Shadcn components. Dense, functional, 'Soft Utility' approach. Separate layout from marketing.",
+    "buttons": "Pill-shaped or sharp rectangular with 1px gold border. Hover state should inverse colors or slide in a background color.",
+    "modals": "Use Shadcn Dialog but heavily style it to match luxury branding (glassmorphism overlay, serif headings, gold accents)."
+  },
+  "section_by_section_direction": {
+    "Header": "Sticky fixed header, z-50. Glassmorphism background. Logo (Water droplet + leaves). Nav links with subtle gold hover underline. CTA 'Contact Us' button.",
+    "Hero": "Full viewport height (min-h-screen). Background: white marble texture. Subtle parallax 3D water drop or high-res droplet image. Large text: 'LUXURY HOME CARE COLLECTION' (masked reveal). Subheading: 'Premium Cleaning Solutions Crafted for Modern Living'. Three pillar badges absolutely positioned. CTA 'Explore Collection'.",
+    "Editorial_Marquee": "Slow moving text: 'SPOTLESS AND PURE • PREMIUM QUALITY YOU CAN TRUST • CRAFTED FOR MODERN LIVING • '",
+    "Product_Showcase": "Section title with gold ornate divider. 3-column grid. Cards: Spotlight product photography, clipped frame borders. Hover: Image slight zoom, 'View Details' button appears. Click opens styled Modal with rich details.",
+    "Key_Features": "Value Grid (Bento style). Asymmetrical boxes highlighting: Effective Cleaning, Long Lasting Fragrance, Sparkling Shine, Safe For Everyday Use, Homes & Professionals. Mix dark navy cards with gold text, and white cards with dark green text.",
+    "About_Manifesto": "Numbered chapters (01, 02, 03) flowing vertically. Large serif typography. Botanical leaf accents overlapping the edges.",
+    "Sustainability": "Make in India ethos. Dark Forest Green background. Large Lion Emblem (faded in bg or crisp beside text). Focus on environmental safety and premium sourcing.",
+    "Contact": "Split layout. Left: Address, map/image, gold accents. Right: Custom styled Shadcn Form. Floating labels or clean underline inputs.",
+    "Footer": "Massive padding (py-32). Dark Navy background. Make in India badge. Quality strip. Large 'Elvora-X' watermark text. Quick links.",
+    "Admin_Panel": "Route `/admin`. Protected (mock auth). Simple table (Shadcn Table) listing contact enquiries. Pure functional styling, no marble or gold needed."
+  },
+  "image_urls": {
+    "marble_texture": {
+      "url": "https://images.unsplash.com/photo-1558346648-9757f2fa4474?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwyfHx3aGl0ZSUyMG1hcmJsZSUyMHRleHR1cmUlMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc4NTMxNDEzMnww&ixlib=rb-4.1.0&q=85",
+      "description": "White marble texture for Hero and background overlays."
+    },
+    "botanical_leaves": {
+      "url": "https://images.unsplash.com/photo-1535242208474-9a2793260ca8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODh8MHwxfHNlYXJjaHw0fHxncmVlbiUyMGJvdGFuaWNhbCUyMGxlYXZlcyUyMGNsb3NlJTIwdXB8ZW58MHx8fHwxNzg1MzE0MTMyfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Green leaves for parallax accents and overlapping decor."
+    },
+    "water_drop_macro": {
+      "url": "https://images.pexels.com/photos/45229/drop-of-water-inject-water-drip-45229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Macro water droplet for Hero visual or section transition."
+    },
+    "product_light_green": {
+      "url": "https://images.unsplash.com/photo-1624377225030-f0bb343eaa4d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxncmVlbiUyMGNsZWFuaW5nJTIwcHJvZHVjdCUyMGJvdHRsZXxlbnwwfHx8fDE3ODUzMTQxNDB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Forest Blossom - Premium Floor Cleaner (Green bottle placeholder)."
+    },
+    "product_yellow": {
+      "url": "https://images.unsplash.com/photo-1587937533577-0ba337fbd436?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHx5ZWxsb3clMjBjbGVhbmluZyUyMHByb2R1Y3QlMjBib3R0bGV8ZW58MHx8fHwxNzg1MzE0MTQwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Forest Dew - Premium Dish Wash (Yellow bottle placeholder)."
+    },
+    "product_dark_green": {
+      "url": "https://images.unsplash.com/photo-1761077207280-f2adf2cec226?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGNsZWFuaW5nJTIwcHJvZHVjdCUyMGJvdHRsZXxlbnwwfHx8fDE3ODUzMTQxNDB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Royal Forest - Premium Phenyl (Dark green bottle placeholder)."
+    },
+    "lion_emblem": {
+      "url": "https://images.unsplash.com/photo-1552388775-5db4cd83c5fa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxsaW9uJTIwc3RhdHVlJTIwbWFyYmxlfGVufDB8fHx8MTc4NTMxNDE0MHww&ixlib=rb-4.1.0&q=85",
+      "description": "Marble Lion statue for Sustainability / Make in India section."
+    },
+    "luxury_interior": {
+      "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBsaXZpbmclMjByb29tJTIwZWxlZ2FudCUyMG1vZGVybnxlbnwwfHx8fDE3ODUzMTQxMzJ8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Luxury living room to use as faint background for 'Homes & Professional Spaces' feature."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: framer-motion, @studio-freight/react-lenis, react-fast-marquee, lucide-react.",
+    "Add fonts `Cormorant Garamond` and `Manrope` from Google Fonts in index.html or global css.",
+    "Do NOT use standard card components for the marketing page; use raw divs with Tailwind for asymmetrical awwwards-level layouts.",
+    "Implement masked line-by-line text reveal in the Hero section. Wrap text lines in overflow-hidden divs and animate the inner text sliding up.",
+    "Ensure Lenis is wrapped around the main app or marketing routes to provide the required momentum scrolling.",
+    "Keep the Admin Panel (Shadcn based) visually distinct and simple. Focus Awwwards-level creativity purely on the public marketing landing page.",
+    "Include 'data-testid' attributes on all interactive elements (buttons, links, form inputs) as per testing requirements.",
+    "Never use `transition: all`. Specify properties, e.g., `transition-transform duration-500 ease-out`.",
+    "Always use the provided image URLs. NEVER use placeholders like via.placeholder.com."
+  ],
+  "universal_guidelines_for_main_agent": [
+    "Avoid generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: `transition: all`. Always add transitions for specific interactive elements.",
+    "You MUST NOT center align the app container, ie do not add `.App { text-align: center; }` in the css file.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations.",
+    "NEVER use AI assistant Emoji characters like \ud83e\udd16\ud83e\udde0\ud83d\udcad\ud83d\udca1\ud83d\udd2e\ud83c\udfaf etc for icons. Use lucide-react.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "All interactive and key informational elements MUST include a `data-testid` attribute."
+  ]
+}
