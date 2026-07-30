@@ -171,8 +171,6 @@ export default function Products({ products = [], onEnquire }) {
                   data-testid="home-care-video-player"
                   className="w-full h-full max-h-[540px] object-contain rounded-2xl"
                   src={`${process.env.PUBLIC_URL}/elvora-ad.mp4`}
-                  autoPlay
-                  muted
                   loop
                   playsInline
                   controls
