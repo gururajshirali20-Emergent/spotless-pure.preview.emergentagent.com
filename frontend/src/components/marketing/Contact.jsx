@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Phone, Mail, MapPin, Loader2, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Loader2, Send, Tag, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -15,13 +15,27 @@ import {
 import { api, formatApiErrorDetail } from "@/lib/api";
 import { CONTACT } from "@/data/site";
 
-const EMPTY = { name: "", email: "", phone: "", message: "", enquiry_type: "general" };
+const EMPTY = { name: "", email: "", phone: "", message: "", enquiry_type: "general", product: "" };
 
-export default function Contact() {
+export default function Contact({ prefill }) {
   const [form, setForm] = useState(EMPTY);
   const [loading, setLoading] = useState(false);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  // Pre-fill when a visitor clicks "Enquire" on a product
+  useEffect(() => {
+    if (!prefill) return;
+    setForm((f) => ({
+      ...f,
+      product: prefill,
+      message: f.message?.trim()
+        ? f.message
+        : `Hi Elvora-X, I'd like to enquire about ${prefill}.`,
+    }));
+  }, [prefill]);
+
+  const clearProduct = () => setForm((f) => ({ ...f, product: "" }));
 
   const submit = async (e) => {
     e.preventDefault();
@@ -97,6 +111,25 @@ export default function Contact() {
           className="rounded-t-[2.5rem] rounded-br-[2.5rem] border border-gold/30 bg-marble p-8 md:p-10 shadow-[0_20px_60px_rgba(10,17,40,0.08)]"
         >
           <h3 className="font-serif text-3xl text-navy mb-6">Send an Enquiry</h3>
+
+          {form.product && (
+            <div
+              data-testid="enquiry-product-tag"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/50 bg-gold/10 pl-4 pr-2 py-1.5 text-sm text-navy"
+            >
+              <Tag className="h-3.5 w-3.5 text-forest" />
+              <span className="font-semibold">{form.product}</span>
+              <button
+                type="button"
+                data-testid="clear-product-tag"
+                onClick={clearProduct}
+                aria-label="Remove product"
+                className="ml-1 grid h-6 w-6 place-items-center rounded-full text-navy/50 hover:bg-navy/10 hover:text-navy transition-colors"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          )}
 
           <div className="space-y-5">
             <div>

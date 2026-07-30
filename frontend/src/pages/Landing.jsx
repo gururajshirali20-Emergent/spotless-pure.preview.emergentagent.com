@@ -12,6 +12,7 @@ import { api } from "@/lib/api";
 
 export default function Landing() {
   const [data, setData] = useState({ products: [], features: [] });
+  const [prefill, setPrefill] = useState(null);
 
   useEffect(() => {
     api
@@ -26,11 +27,11 @@ export default function Landing() {
       <main>
         <Hero />
         <EditorialMarquee />
-        <Products products={data.products} />
+        <Products products={data.products} onEnquire={setPrefill} />
         <Features features={data.features} />
         <About />
         <Sustainability />
-        <Contact />
+        <Contact prefill={prefill} />
       </main>
       <Footer />
     </div>

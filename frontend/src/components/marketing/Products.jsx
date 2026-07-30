@@ -86,17 +86,24 @@ function GroupHeader({ overline, title, accent }) {
   );
 }
 
-export default function Products({ products = [] }) {
+export default function Products({ products = [], onEnquire }) {
   const [active, setActive] = useState(null);
+  const [filter, setFilter] = useState("all");
   const lenis = useLenis();
 
   const homeCare = products.filter((p) => (p.group || "home-care") === "home-care");
   const automobile = products.filter((p) => p.group === "automobile");
 
+  const FILTERS = [
+    { key: "all", label: "All Products" },
+    { key: "home-care", label: "Home Care" },
+    { key: "automobile", label: "Automobile" },
+  ];
+
   return (
     <section id="collection" data-testid="products-section" className="relative bg-marble py-24 md:py-32">
       <div className="mx-auto max-w-[88rem] px-6">
-        <div className="max-w-2xl mb-16">
+        <div className="max-w-2xl mb-10">
           <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-gold font-semibold mb-4">
             Our Collection
           </p>
@@ -105,29 +112,56 @@ export default function Products({ products = [] }) {
           </h2>
         </div>
 
-        {/* Section 1 — Home Care */}
-        <div data-testid="collection-home-care" className="mb-24">
-          <GroupHeader overline="01 · Home Care" title="For a home that shines," accent="inside out." />
-          <div className="grid gap-8 md:grid-cols-3">
-            {homeCare.map((p, i) => (
-              <ProductCard key={p.id} p={p} index={i} onOpen={setActive} />
-            ))}
-          </div>
+        {/* Category filter toggle */}
+        <div data-testid="collection-filter" className="mb-16 inline-flex flex-wrap gap-1 rounded-full border border-gold/30 bg-white p-1.5 shadow-[0_10px_30px_rgba(10,17,40,0.05)]">
+          {FILTERS.map((f) => (
+            <button
+              key={f.key}
+              data-testid={`filter-${f.key}`}
+              onClick={() => setFilter(f.key)}
+              className={`relative rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide transition-colors duration-300 ${
+                filter === f.key ? "text-white" : "text-navy/60 hover:text-navy"
+              }`}
+            >
+              {filter === f.key && (
+                <motion.span
+                  layoutId="filter-pill"
+                  className="absolute inset-0 rounded-full bg-navy"
+                  transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                />
+              )}
+              <span className="relative z-10">{f.label}</span>
+            </button>
+          ))}
         </div>
 
-        {/* Section 2 — Automobile Interior Cleaning */}
-        <div data-testid="collection-automobile">
-          <GroupHeader
-            overline="02 · Automobile Interior Cleaning"
-            title="Showroom finish"
-            accent="for your drive."
-          />
-          <div className="grid gap-8 md:grid-cols-3">
-            {automobile.map((p, i) => (
-              <ProductCard key={p.id} p={p} index={i} onOpen={setActive} />
-            ))}
+        {/* Section 1 — Home Care */}
+        {filter !== "automobile" && (
+          <div data-testid="collection-home-care" className="mb-24">
+            <GroupHeader overline="01 · Home Care" title="For a home that shines," accent="inside out." />
+            <div className="grid gap-8 md:grid-cols-3">
+              {homeCare.map((p, i) => (
+                <ProductCard key={p.id} p={p} index={i} onOpen={setActive} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Section 2 — Automobile Interior Cleaning */}
+        {filter !== "home-care" && (
+          <div data-testid="collection-automobile">
+            <GroupHeader
+              overline="02 · Automobile Interior Cleaning"
+              title="Showroom finish"
+              accent="for your drive."
+            />
+            <div className="grid gap-8 md:grid-cols-3">
+              {automobile.map((p, i) => (
+                <ProductCard key={p.id} p={p} index={i} onOpen={setActive} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
@@ -176,6 +210,7 @@ export default function Products({ products = [] }) {
                 <button
                   data-testid="modal-enquire"
                   onClick={() => {
+                    onEnquire?.(active.name);
                     setActive(null);
                     setTimeout(() => lenis?.scrollTo("#contact", { offset: -70, duration: 1.4 }), 200);
                   }}
