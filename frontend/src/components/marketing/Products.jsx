@@ -144,6 +144,42 @@ export default function Products({ products = [], onEnquire }) {
                 <ProductCard key={p.id} p={p} index={i} onOpen={setActive} />
               ))}
             </div>
+
+            {/* Home Care promo video */}
+            <motion.div
+              data-testid="home-care-video"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] items-center rounded-t-[2.5rem] rounded-br-[2.5rem] border border-gold/30 bg-navy overflow-hidden shadow-[0_30px_70px_rgba(10,17,40,0.18)]"
+            >
+              <div className="p-8 md:p-12">
+                <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-gold font-semibold mb-4">
+                  Elvora-X in Action
+                </p>
+                <h3 className="font-serif text-3xl md:text-4xl text-white leading-tight mb-4">
+                  See the shine, <span className="italic text-gold-light">feel the freshness.</span>
+                </h3>
+                <p className="text-white/60 font-light leading-relaxed">
+                  Watch how our premium home care range transforms everyday cleaning into
+                  a spotless, fragrant experience for modern living.
+                </p>
+              </div>
+              <div className="relative bg-black flex items-center justify-center min-h-[280px] max-h-[560px] p-3">
+                <video
+                  data-testid="home-care-video-player"
+                  className="w-full h-full max-h-[540px] object-contain rounded-2xl"
+                  src={`${process.env.PUBLIC_URL}/elvora-ad.mp4`}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                />
+              </div>
+            </motion.div>
           </div>
         )}
 
