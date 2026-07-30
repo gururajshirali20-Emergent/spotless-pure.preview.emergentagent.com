@@ -117,10 +117,10 @@ PRODUCTS = [
     {
         "id": "forest-blossom",
         "name": "Forest Blossom",
-        "category": "Premium Floor Cleaner",
+        "category": "Premium Floor Cleanser",
         "tagline": "Deep Clean • Shine • Freshness",
         "accent": "#2E7D32",
-        "description": "A premium floor cleaner engineered for a spotless, streak-free finish. Forest Blossom lifts everyday grime while leaving behind a long-lasting botanical fragrance that transforms your home into a sanctuary.",
+        "description": "A premium floor cleanser engineered for a spotless, streak-free finish. Forest Blossom lifts everyday grime while leaving behind a long-lasting botanical fragrance that transforms your home into a sanctuary.",
         "highlights": ["Streak-free spotless shine", "Long lasting floral fragrance", "Safe on all sealed floors", "Concentrated premium formula"],
         "size": "1L",
         "group": "home-care",
