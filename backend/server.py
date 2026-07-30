@@ -155,9 +155,8 @@ PRODUCTS = [
         "accent": "#0A1128",
         "description": "A premium dashboard polish that restores a deep, non-greasy shine to your car's interior. Enriched with UV protection to guard against fading and cracking, it refreshes dashboards, trims and panels while leaving a long-lasting fragrance.",
         "highlights": ["Deep non-greasy showroom shine", "UV protection against fading & cracks", "Anti-static, repels dust longer", "Fresh long lasting fragrance"],
-        "size": "250ml",
+        "size": "200ml",
         "group": "automobile",
-        "image_url": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1000&q=75",
     },
 ]
 

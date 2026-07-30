@@ -67,7 +67,7 @@ export default function Sustainability() {
             <img src={lion} alt="Make in India" className="h-28 object-contain mx-auto mb-4" />
             <p className="font-serif text-3xl text-navy">Crafted with Pride</p>
             <p className="text-forest text-sm tracking-[0.25em] uppercase font-semibold mt-2">
-              A Nimishika Ventures Brand
+              A Manishika Ventures Brand
             </p>
           </div>
         </motion.div>

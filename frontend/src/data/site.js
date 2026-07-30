@@ -7,7 +7,7 @@ export const NAV_LINKS = [
 ];
 
 export const CONTACT = {
-  company: "Nimishika Ventures LLP",
+  company: "Manishika Ventures LLP",
   address: "#2/2, 2nd Main Road, S J Patel Complex, Vinayaka Circle, Palace Guttahalli, Bangalore - 560003",
   phone: "+91 80 4718 2200",
   email: "care@elvora-x.com",

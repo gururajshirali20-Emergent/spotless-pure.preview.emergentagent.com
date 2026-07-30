@@ -1,7 +1,7 @@
 # Elvora-X — Luxury Home Care Website (PRD)
 
 ## Problem Statement
-Premium marketing website for Elvora-X (Nimishika Ventures LLP), a floor cleaner & home care
+Premium marketing website for Elvora-X (Manishika Ventures LLP), a floor cleaner & home care
 manufacturer. Showcases flagship products (Forest Blossom, Forest Dew, Royal Forest) with a
 luxury "Spotless and Pure" aesthetic. Enquiry-based (no e-commerce v1) + protected admin panel.
 

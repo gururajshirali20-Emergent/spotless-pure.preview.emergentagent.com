@@ -6,15 +6,17 @@ import { useLenis } from "lenis/react";
 import blossom from "@/assets/forest-blossom.png";
 import dew from "@/assets/forest-dew.png";
 import royal from "@/assets/royal-forest.png";
+import dashboard from "@/assets/car-dashboard-polish.png";
 
 const LOCAL_IMG = {
   "forest-blossom": blossom,
   "forest-dew": dew,
   "royal-forest": royal,
+  "car-dashboard-polish": dashboard,
 };
 
 const imgFor = (p) => LOCAL_IMG[p.id] || p.image_url;
-const isPhoto = (p) => p.group === "automobile";
+const isPhoto = (p) => !LOCAL_IMG[p.id] && !!p.image_url;
 
 function ProductCard({ p, index, onOpen }) {
   const photo = isPhoto(p);
