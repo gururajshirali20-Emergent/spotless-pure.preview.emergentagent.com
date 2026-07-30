@@ -117,7 +117,7 @@ PRODUCTS = [
     {
         "id": "forest-blossom",
         "name": "Forest Blossom",
-        "category": "Premium Floor Cleanser",
+        "category": "Premium Floor Cleanzer",
         "tagline": "Deep Clean • Shine • Freshness",
         "accent": "#2E7D32",
         "description": "A premium floor cleanser engineered for a spotless, streak-free finish. Forest Blossom lifts everyday grime while leaving behind a long-lasting botanical fragrance that transforms your home into a sanctuary.",
@@ -139,7 +139,7 @@ PRODUCTS = [
     {
         "id": "royal-forest",
         "name": "Royal Forest",
-        "category": "Premium Floor Cleanser",
+        "category": "Premium Floor Cleanzer",
         "tagline": "Powerful Cleaning • Long Lasting Freshness",
         "accent": "#14532D",
         "description": "Royal Forest is a premium floor cleanser that delivers powerful cleaning and enduring freshness. Ideal for homes and professional spaces demanding hygienic, fragrant results.",
