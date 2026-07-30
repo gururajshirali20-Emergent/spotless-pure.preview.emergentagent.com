@@ -123,6 +123,7 @@ PRODUCTS = [
         "description": "A premium floor cleaner engineered for a spotless, streak-free finish. Forest Blossom lifts everyday grime while leaving behind a long-lasting botanical fragrance that transforms your home into a sanctuary.",
         "highlights": ["Streak-free spotless shine", "Long lasting floral fragrance", "Safe on all sealed floors", "Concentrated premium formula"],
         "size": "1L",
+        "group": "home-care",
     },
     {
         "id": "forest-dew",
@@ -133,6 +134,7 @@ PRODUCTS = [
         "description": "Forest Dew cuts through the toughest grease while staying gentle on your hands. A rich, active formula that leaves dishes sparkling clean with a fresh, dewy scent.",
         "highlights": ["Powerful grease cutting action", "Gentle & dermatologically kind", "Sparkling residue-free rinse", "Fresh long lasting scent"],
         "size": "1L",
+        "group": "home-care",
     },
     {
         "id": "royal-forest",
@@ -143,6 +145,19 @@ PRODUCTS = [
         "description": "Royal Forest is a premium phenyl disinfectant that delivers powerful cleaning and enduring freshness. Ideal for homes and professional spaces demanding hygienic, fragrant results.",
         "highlights": ["Deep hygienic protection", "Enduring forest freshness", "Homes & professional spaces", "Premium concentrated phenyl"],
         "size": "1L",
+        "group": "home-care",
+    },
+    {
+        "id": "car-dashboard-polish",
+        "name": "Car Dashboard Polish",
+        "category": "Automobile Interior Care",
+        "tagline": "Rich Shine • UV Protection • Anti-Dust",
+        "accent": "#0A1128",
+        "description": "A premium dashboard polish that restores a deep, non-greasy shine to your car's interior. Enriched with UV protection to guard against fading and cracking, it refreshes dashboards, trims and panels while leaving a long-lasting fragrance.",
+        "highlights": ["Deep non-greasy showroom shine", "UV protection against fading & cracks", "Anti-static, repels dust longer", "Fresh long lasting fragrance"],
+        "size": "250ml",
+        "group": "automobile",
+        "image_url": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1000&q=75",
     },
 ]
 
