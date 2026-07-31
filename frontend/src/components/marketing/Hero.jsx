@@ -115,11 +115,11 @@ export default function Hero() {
         </div>
 
         {/* Bottles */}
-        <motion.div style={{ y: yBottles }} className="relative h-[420px] md:h-[560px] flex items-end justify-center">
+        <motion.div style={{ y: yBottles }} className="relative h-[420px] md:h-[560px] flex items-end justify-center gap-2 md:gap-4">
           {[
-            { src: dew, cls: "z-10 h-[74%] -rotate-6 -mr-10", d: 0.7 },
-            { src: royal, cls: "z-20 h-[92%]", d: 0.5 },
-            { src: blossom, cls: "z-10 h-[80%] rotate-6 -ml-10", d: 0.9 },
+            { src: dew, cls: "z-10 h-[82%]", d: 0.7 },
+            { src: royal, cls: "z-20 h-[94%]", d: 0.5 },
+            { src: blossom, cls: "z-10 h-[86%]", d: 0.9 },
           ].map((b, i) => (
             <motion.img
               key={i}
@@ -128,7 +128,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: b.d, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className={`product-shadow object-contain ${b.cls}`}
+              className={`product-shadow object-contain min-w-0 ${b.cls}`}
             />
           ))}
         </motion.div>
