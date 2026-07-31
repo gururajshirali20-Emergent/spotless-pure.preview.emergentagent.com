@@ -5,6 +5,7 @@ import { Droplets, Leaf, ShieldCheck, ArrowDownRight } from "lucide-react";
 import blossom from "@/assets/forest-blossom.png";
 import dew from "@/assets/forest-dew.png";
 import royal from "@/assets/royal-forest.png";
+import homeBanner from "@/assets/home-banner.jpg";
 
 const PILLARS = [
   { label: "Cleaning", Icon: Droplets },
@@ -26,7 +27,6 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const yBottles = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const yLeaf = useTransform(scrollYProgress, [0, 1], [0, 160]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const explore = () =>
     lenis ? lenis.scrollTo("#collection", { offset: -70, duration: 1.4 }) : null;
@@ -134,12 +134,21 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Brand showcase banner */}
       <motion.div
-        style={{ opacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-navy/50"
+        data-testid="hero-banner"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mx-auto max-w-[88rem] px-6 mt-10 md:mt-16"
       >
-        <span className="text-[0.65rem] tracking-[0.3em] uppercase">Scroll</span>
-        <div className="h-10 w-px bg-navy/30 animate-pulse" />
+        <div className="overflow-hidden rounded-t-[2.5rem] rounded-br-[2.5rem] border border-gold/40 shadow-[0_30px_70px_rgba(10,17,40,0.15)]">
+          <img
+            src={homeBanner}
+            alt="Elvora-X premium home care collection — About & Why Choose Elvora-X"
+            className="w-full h-auto object-cover"
+          />
+        </div>
       </motion.div>
     </section>
   );
