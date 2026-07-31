@@ -2,9 +2,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { Droplets, Leaf, ShieldCheck, ArrowDownRight } from "lucide-react";
-import blossom from "@/assets/forest-blossom.png";
-import dew from "@/assets/forest-dew.png";
-import royal from "@/assets/royal-forest.png";
 import homeBanner from "@/assets/home-banner.jpg";
 
 const PILLARS = [
@@ -25,7 +22,6 @@ export default function Hero() {
   const ref = useRef(null);
   const lenis = useLenis();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const yBottles = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const yLeaf = useTransform(scrollYProgress, [0, 1], [0, 160]);
 
   const explore = () =>
@@ -45,9 +41,9 @@ export default function Hero() {
         className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(30,63,32,0.14),transparent_70%)] blur-2xl"
       />
 
-      <div className="relative mx-auto max-w-[88rem] px-6 grid lg:grid-cols-2 gap-10 items-center min-h-[calc(100vh-11rem)]">
+      <div className="relative mx-auto max-w-[88rem] px-6 flex flex-col justify-center min-h-[calc(60vh-6rem)]">
         {/* Text */}
-        <div>
+        <div className="max-w-3xl">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -113,25 +109,6 @@ export default function Hero() {
             <ArrowDownRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1" />
           </motion.button>
         </div>
-
-        {/* Bottles */}
-        <motion.div style={{ y: yBottles }} className="relative h-[420px] md:h-[560px] flex items-end justify-center gap-2 md:gap-4">
-          {[
-            { src: dew, cls: "z-10 h-[82%]", d: 0.7 },
-            { src: royal, cls: "z-20 h-[94%]", d: 0.5 },
-            { src: blossom, cls: "z-10 h-[86%]", d: 0.9 },
-          ].map((b, i) => (
-            <motion.img
-              key={i}
-              src={b.src}
-              alt="Elvora-X product"
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: b.d, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className={`product-shadow object-contain min-w-0 ${b.cls}`}
-            />
-          ))}
-        </motion.div>
       </div>
 
       {/* Brand showcase banner */}
