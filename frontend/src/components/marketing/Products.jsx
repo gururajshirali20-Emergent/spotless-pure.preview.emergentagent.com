@@ -31,7 +31,7 @@ function ProductCard({ p, index, onOpen }) {
       className="group relative cursor-pointer rounded-t-[2.5rem] rounded-br-[2.5rem] border border-gold/30 bg-white overflow-hidden shadow-[0_20px_50px_rgba(10,17,40,0.06)] transition-shadow duration-500 hover:shadow-[0_30px_70px_rgba(10,17,40,0.14)]"
     >
       <div
-        className={`relative h-[360px] flex items-end justify-center overflow-hidden ${
+        className={`relative h-[380px] flex items-center justify-center overflow-hidden ${
           photo ? "bg-navy" : "bg-[radial-gradient(circle_at_50%_20%,rgba(212,175,55,0.12),transparent_60%)]"
         }`}
       >
@@ -54,7 +54,7 @@ function ProductCard({ p, index, onOpen }) {
           <img
             src={imgFor(p)}
             alt={p.name}
-            className="h-[92%] object-contain transition-transform duration-700 ease-out group-hover:scale-[1.06] product-shadow"
+            className="max-h-full max-w-full w-auto object-contain py-5 transition-transform duration-700 ease-out group-hover:scale-[1.05] product-shadow"
           />
         )}
       </div>
