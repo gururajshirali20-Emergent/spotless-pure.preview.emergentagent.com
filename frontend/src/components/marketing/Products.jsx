@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Check, Plus, X } from "lucide-react";
@@ -90,6 +90,35 @@ export default function Products({ products = [], onEnquire }) {
   const [active, setActive] = useState(null);
   const [filter, setFilter] = useState("all");
   const lenis = useLenis();
+  const videoRef = useRef(null);
+
+  // Autoplay the promo video (attempt with sound) when it scrolls into view; pause when out of view
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            vid.muted = false;
+            const p = vid.play();
+            if (p && p.catch) {
+              // Browser blocked unmuted autoplay -> fall back to muted playback
+              p.catch(() => {
+                vid.muted = true;
+                vid.play().catch(() => {});
+              });
+            }
+          } else {
+            vid.pause();
+          }
+        });
+      },
+      { threshold: 0.55 }
+    );
+    observer.observe(vid);
+    return () => observer.disconnect();
+  }, [filter]);
 
   const homeCare = products.filter((p) => (p.group || "home-care") === "home-care");
   const automobile = products.filter((p) => p.group === "automobile");
@@ -168,13 +197,14 @@ export default function Products({ products = [], onEnquire }) {
               </div>
               <div className="relative bg-black flex items-center justify-center min-h-[280px] max-h-[560px] p-3">
                 <video
+                  ref={videoRef}
                   data-testid="home-care-video-player"
                   className="w-full h-full max-h-[540px] object-contain rounded-2xl"
                   src={`${process.env.PUBLIC_URL}/elvora-ad.mp4`}
                   loop
                   playsInline
                   controls
-                  preload="metadata"
+                  preload="auto"
                 />
               </div>
             </motion.div>
