@@ -139,6 +139,9 @@ export default function Products({ products = [], onEnquire }) {
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-navy leading-tight">
             Signature care for every surface — <span className="italic text-forest">spotless purity.</span>
           </h2>
+          <p data-testid="collection-subline" className="mt-5 text-base md:text-lg text-navy/60 font-light">
+            A new fragrance joins our collection every three months.
+          </p>
         </div>
 
         {/* Category filter toggle */}
