@@ -7,6 +7,7 @@ import blossom from "@/assets/forest-blossom.png";
 import dew from "@/assets/forest-dew.png";
 import royal from "@/assets/royal-forest.png";
 import dashboard from "@/assets/car-dashboard-polish.png";
+import seasonalFragrance from "@/assets/seasonal-fragrance.jpg";
 
 const LOCAL_IMG = {
   "forest-blossom": blossom,
@@ -132,19 +133,36 @@ export default function Products({ products = [], onEnquire }) {
   return (
     <section id="collection" data-testid="products-section" className="relative bg-marble py-24 md:py-32">
       <div className="mx-auto max-w-[88rem] px-6">
-        <div className="max-w-2xl mb-10">
-          <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-gold font-semibold mb-4">
-            Our Collection
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-navy leading-tight">
-            Signature care for every fragrance — <span className="italic text-forest">spotless purity.</span>
-          </h2>
-          <div data-testid="collection-subline" className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-gold/15 px-5 py-2.5 shadow-[0_8px_24px_rgba(212,175,55,0.18)]">
-            <Sparkles className="h-4 w-4 text-gold shrink-0" />
-            <p className="text-sm md:text-base font-bold tracking-wide text-navy">
-              A new fragrance joins our collection every three months.
+        <div className="grid lg:grid-cols-2 gap-10 items-center mb-14">
+          <div className="max-w-2xl">
+            <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-gold font-semibold mb-4">
+              Our Collection
             </p>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-navy leading-tight">
+              Signature care for every fragrance — <span className="italic text-forest">spotless purity.</span>
+            </h2>
+            <div data-testid="collection-subline" className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-gold/15 px-5 py-2.5 shadow-[0_8px_24px_rgba(212,175,55,0.18)]">
+              <Sparkles className="h-4 w-4 text-gold shrink-0" />
+              <p className="text-sm md:text-base font-bold tracking-wide text-navy">
+                A new fragrance joins our collection every three months.
+              </p>
+            </div>
           </div>
+
+          <motion.div
+            data-testid="seasonal-fragrance-banner"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden rounded-t-[2.5rem] rounded-br-[2.5rem] border border-gold/40 shadow-[0_25px_60px_rgba(10,17,40,0.14)]"
+          >
+            <img
+              src={seasonalFragrance}
+              alt="Elvora-X Seasonal Signature Fragrance — a new premium fragrance every 3 months"
+              className="w-full h-auto object-cover"
+            />
+          </motion.div>
         </div>
 
         {/* Category filter toggle */}
