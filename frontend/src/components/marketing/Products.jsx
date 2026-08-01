@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Check, Plus, X, Sparkles } from "lucide-react";
+import { Check, Plus, X } from "lucide-react";
 import { useLenis } from "lenis/react";
 import blossom from "@/assets/forest-blossom.png";
 import dew from "@/assets/forest-dew.png";
@@ -141,12 +141,6 @@ export default function Products({ products = [], onEnquire }) {
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-tight text-navy leading-tight">
               Signature care for every fragrance — <span className="italic text-forest">spotless purity.</span>
             </h2>
-            <div data-testid="collection-subline" className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-gold/15 px-5 py-2.5 shadow-[0_8px_24px_rgba(212,175,55,0.18)]">
-              <Sparkles className="h-4 w-4 text-gold shrink-0" />
-              <p className="text-sm md:text-base font-bold tracking-wide text-navy">
-                A new fragrance joins our collection every three months.
-              </p>
-            </div>
           </div>
 
           <motion.div
