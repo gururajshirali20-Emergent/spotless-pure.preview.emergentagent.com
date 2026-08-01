@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { Droplets, Leaf, ShieldCheck, ArrowDownRight } from "lucide-react";
 import homeBanner from "@/assets/home-banner.jpg";
+import logo from "@/assets/elvora-logo.jpg";
 
 const PILLARS = [
   { label: "Cleaning", Icon: Droplets },
@@ -41,7 +42,7 @@ export default function Hero() {
         className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(30,63,32,0.14),transparent_70%)] blur-2xl"
       />
 
-      <div className="relative mx-auto max-w-[88rem] px-6 flex flex-col justify-center min-h-[calc(60vh-6rem)]">
+      <div className="relative mx-auto max-w-[88rem] px-6 grid lg:grid-cols-2 gap-10 items-center min-h-[calc(100vh-13rem)]">
         {/* Text */}
         <div className="max-w-3xl">
           <motion.p
@@ -109,6 +110,20 @@ export default function Hero() {
             <ArrowDownRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1" />
           </motion.button>
         </div>
+
+        {/* Logo */}
+        <motion.div
+          className="flex items-center justify-center lg:justify-end"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img
+            src={logo}
+            alt="Elvora-X logo"
+            className="w-full max-w-md h-auto object-contain mix-blend-multiply"
+          />
+        </motion.div>
       </div>
 
       {/* Brand showcase banner */}
