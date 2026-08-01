@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { LogOut, Inbox, Mail, Package, Trash2, Check, RefreshCw, Phone } from "lucide-react";
+import { LogOut, Inbox, Mail, Package, Trash2, Check, RefreshCw, Phone, Download } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { api, formatApiErrorDetail } from "@/lib/api";
 import {
@@ -79,6 +79,37 @@ export default function AdminDashboard() {
     navigate("/admin/login", { replace: true });
   };
 
+  const exportCsv = () => {
+    if (!rows.length) {
+      toast.info("No enquiries to export");
+      return;
+    }
+    const headers = ["Name", "Email", "Phone", "Type", "Product", "Status", "Message", "Received"];
+    const esc = (v) => {
+      const s = v == null ? "" : String(v);
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+    const lines = [headers.join(",")];
+    rows.forEach((r) => {
+      const when = r.created_at ? new Date(r.created_at).toLocaleString() : "";
+      lines.push(
+        [r.name, r.email, r.phone, r.enquiry_type, r.product || "", r.status, r.message, when]
+          .map(esc)
+          .join(",")
+      );
+    });
+    const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `elvora-x-enquiries-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast.success(`Exported ${rows.length} enquiries`);
+  };
+
   return (
     <div className="min-h-screen bg-muted/40">
       <header className="bg-navy text-white sticky top-0 z-10">
@@ -105,9 +136,14 @@ export default function AdminDashboard() {
             <h1 className="text-2xl font-bold text-navy font-serif">Enquiries</h1>
             <p className="text-sm text-muted-foreground">Customer & distributor enquiries.</p>
           </div>
-          <button data-testid="admin-refresh" onClick={load} className="inline-flex items-center gap-2 text-sm border rounded-full px-4 py-2 bg-white hover:bg-muted transition-colors">
-            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} /> Refresh
-          </button>
+          <div className="flex items-center gap-3">
+            <button data-testid="admin-export-csv" onClick={exportCsv} className="inline-flex items-center gap-2 text-sm rounded-full px-4 py-2 bg-navy text-white hover:bg-navy-soft transition-colors">
+              <Download className="h-4 w-4" /> Export CSV
+            </button>
+            <button data-testid="admin-refresh" onClick={load} className="inline-flex items-center gap-2 text-sm border rounded-full px-4 py-2 bg-white hover:bg-muted transition-colors">
+              <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} /> Refresh
+            </button>
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-3 mb-8">
