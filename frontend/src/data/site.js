@@ -9,7 +9,7 @@ export const NAV_LINKS = [
 export const CONTACT = {
   company: "Manishika Ventures LLP",
   address: "#2/2, 2nd Main Road, S J Patel Complex, Vinayaka Circle, Palace Guttahalli, Bangalore - 560003",
-  phone: "+91 80 4718 2200",
+  phone: "+91 63644 23175",
   email: "care@elvora-x.com",
   mapQuery: "Vinayaka+Circle+Palace+Guttahalli+Bangalore+560003",
 };
