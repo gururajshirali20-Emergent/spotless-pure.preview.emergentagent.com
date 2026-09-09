@@ -132,13 +132,13 @@ export default function Hero() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mx-auto max-w-[88rem] px-6 mt-10 md:mt-16"
+        className="relative mx-auto max-w-2xl px-6 mt-10 md:mt-16"
       >
         <div className="overflow-hidden rounded-t-[2.5rem] rounded-br-[2.5rem] border border-gold/40 shadow-[0_30px_70px_rgba(10,17,40,0.15)]">
           <img
             src={homeBanner}
-            alt="Elvora-X premium home care collection — About & Why Choose Elvora-X"
-            className="w-full h-auto object-cover"
+            alt="Elvora-X premium home care collection"
+            className="w-full h-auto object-contain"
           />
         </div>
       </motion.div>
