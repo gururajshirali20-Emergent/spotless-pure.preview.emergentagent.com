@@ -6,12 +6,14 @@ import { useLenis } from "lenis/react";
 import blossom from "@/assets/forest-blossom.png";
 import dew from "@/assets/forest-dew.png";
 import royal from "@/assets/royal-forest.png";
+import aura from "@/assets/forest-aura.png";
 import seasonalFragrance from "@/assets/seasonal-fragrance.jpg";
 
 const LOCAL_IMG = {
   "forest-blossom": blossom,
   "forest-dew": dew,
   "royal-forest": royal,
+  "forest-aura": aura,
 };
 
 const imgFor = (p) => LOCAL_IMG[p.id] || p.image_url;
